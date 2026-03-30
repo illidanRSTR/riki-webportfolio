@@ -5,231 +5,277 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Riki Yabut Portfolio</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
-body {
-  scroll-behavior: smooth;
-  background: #0b0f19;
-  color: #e6e6e6;
-  font-family: 'Segoe UI', sans-serif;
-  overflow-x: hidden;
+:root {
+    --bg: #000000;
+    --surface: #0a0a0a;
+    --border: #222222;
+    --accent: #ffffff; /* Pure white accent for maximum simplicity */
+    --text-dim: #888888;
 }
 
-/* background glow */
+body {
+    scroll-behavior: smooth;
+    background: var(--bg);
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Subtle Film Grain - makes the black feel like "ink" rather than just pixels */
 body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(0,153,255,0.15), transparent 40%),
-    radial-gradient(circle at 80% 60%, rgba(153,0,255,0.15), transparent 40%);
-  z-index: -1;
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
+    opacity: 0.03;
+    z-index: 1000;
+    pointer-events: none;
 }
 
 /* HERO */
 .hero {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding-left: 10%;
-  background: linear-gradient(120deg, #0b0f19, #111827);
+    height: 85vh;
+    display: flex;
+    align-items: center;
+    padding: 0 10%;
 }
 
 .glass {
-  background: rgba(20, 20, 30, 0.6);
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.05);
-  padding: 30px;
-  max-width: 500px;
+    max-width: 650px;
+    border-left: 2px solid var(--accent); /* Minimalist vertical line */
+    padding-left: 40px;
 }
 
-/* SECTIONS */
-.section {
-  padding: 90px 0;
-  position: relative;
+h1 {
+    font-weight: 800;
+    font-size: clamp(3rem, 10vw, 5rem);
+    letter-spacing: -0.05em;
+    margin-bottom: 10px;
 }
 
-.section::before {
-  content: "";
-  position: absolute;
-  left: 10%;
-  top: 0;
-  width: 80px;
-  height: 2px;
-  background: linear-gradient(90deg, #00c6ff, #a855f7);
-}
-
-/* TITLE */
-.section-title {
-  font-weight: 600;
-  margin-bottom: 20px;
-}
-
-/* CARDS */
-.card-custom {
-  background: rgba(20,20,30,0.7);
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.05);
-  transition: 0.3s;
-}
-
-.card-custom:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 25px rgba(0,153,255,0.2);
-}
-
-/* skill tags */
-.card-custom.p-3 {
-  border-radius: 30px;
-  font-size: 14px;
+#typing {
+    font-weight: 400;
+    color: var(--text-dim);
+    font-size: 1.25rem;
+    margin-bottom: 20px;
 }
 
 /* BADGE */
 .badge-custom {
-  background: linear-gradient(90deg, #00c6ff, #a855f7);
-  color: white;
-  padding: 6px 14px;
-  border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    border: 1px solid var(--accent);
+    padding: 5px 12px;
+}
+
+/* SECTIONS */
+.section {
+    padding: 120px 0;
+    border-top: 1px solid var(--border);
+}
+
+.section-title {
+    font-weight: 800;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--text-dim);
+    margin-bottom: 50px;
+}
+
+/* CARDS */
+.card-custom {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 30px;
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+.card-custom:hover {
+    border-color: var(--accent);
+}
+
+/* Skill Tags - Unified and Simple */
+.skill-card {
+    border: 1px solid var(--border);
+    padding: 15px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    transition: 0.2s;
+}
+
+.skill-card:hover {
+    background: white;
+    color: black;
 }
 
 /* SOCIAL */
 .social-btn {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 16px;
-  border-radius: 8px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.08);
-  text-decoration: none;
-  color: #e6e6e6;
-  transition: 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: 0.3s;
 }
 
 .social-btn img {
-  width: 20px;
+    width: 18px;
+    filter: invert(1); /* Makes logos white */
 }
 
 .social-btn:hover {
-  background: rgba(0,153,255,0.15);
-  transform: translateY(-3px);
+    background: var(--accent);
+    color: #000;
 }
 
-/* fade */
+.social-btn:hover img {
+    filter: invert(0);
+}
+
+/* FADE EFFECT */
 .fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: 0.7s;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
 }
 .fade-in.show {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
+}
+
+footer {
+    padding: 60px 10%;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
 }
 </style>
 </head>
 
 <body>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="glass text-start">
-    <h1 class="fw-bold">Riki Yabut</h1>
-    <p id="typing" class="lead"></p>
+  <div class="glass">
     <span class="badge-custom">JP • FIL • EN</span>
+    <h1 class="mt-3">Riki Yabut</h1>
+    <p id="typing" class="lead"></p>
   </div>
 </section>
 
-<!-- ABOUT -->
 <section class="section fade-in">
   <div class="container">
     <h2 class="section-title">About Me</h2>
-    <p>
-      I am an aspiring IT professional currently pursuing a Bachelor of Science in Information Technology at STI College Malolos.
-      I enjoy helping users solve technical problems and learning how systems work to improve efficiency.
-    </p>
-    <p>
-      With native proficiency in Japanese and Filipino, and fluency in English, I am open to bilingual roles where I can support users and grow my skills in IT support and system-related work.
-    </p>
+    <div class="row">
+        <div class="col-lg-8">
+            <p class="fs-4">
+              I am an aspiring IT professional currently pursuing a Bachelor of Science in Information Technology at STI College Malolos.
+              I enjoy helping users solve technical problems and learning how systems work to improve efficiency.
+            </p>
+            <p class="text-dim mt-4">
+              With native proficiency in Japanese and Filipino, and fluency in English, I am open to bilingual roles where I can support users and grow my skills in IT support and system-related work.
+            </p>
+        </div>
+    </div>
   </div>
 </section>
 
-<!-- SKILLS -->
 <section class="section fade-in">
   <div class="container">
     <h2 class="section-title">Core Skills</h2>
-    <div class="row">
-      <div class="col-md-3 mb-3"><div class="card-custom p-3 text-center">Troubleshooting</div></div>
-      <div class="col-md-3 mb-3"><div class="card-custom p-3 text-center">Web Basics</div></div>
-      <div class="col-md-3 mb-3"><div class="card-custom p-3 text-center">Python</div></div>
-      <div class="col-md-3 mb-3"><div class="card-custom p-3 text-center">SQL</div></div>
-      <div class="col-md-3 mb-3"><div class="card-custom p-3 text-center">User Support</div></div>
-      <div class="col-md-3 mb-3"><div class="card-custom p-3 text-center">Multilingual Communication</div></div>
+    <div class="row g-2">
+      <div class="col-6 col-md-4 col-lg-2"><div class="skill-card">Troubleshooting</div></div>
+      <div class="col-6 col-md-4 col-lg-2"><div class="skill-card">Web Basics</div></div>
+      <div class="col-6 col-md-4 col-lg-2"><div class="skill-card">Python</div></div>
+      <div class="col-6 col-md-4 col-lg-2"><div class="skill-card">SQL</div></div>
+      <div class="col-6 col-md-4 col-lg-2"><div class="skill-card">User Support</div></div>
+      <div class="col-6 col-md-4 col-lg-2"><div class="skill-card">Communication</div></div>
     </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
 <section class="section fade-in">
   <div class="container">
     <h2 class="section-title">Projects</h2>
-    <div class="row">
-
-      <div class="col-md-6 mb-3">
-        <div class="card-custom p-4">
-          <h5>Simple POS System</h5>
-          <small>2022</small>
-          <p class="mt-2">A basic point-of-sale system designed for small stores to manage transactions efficiently.</p>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="card-custom">
+          <small class="text-dim">2022</small>
+          <h5 class="fw-bold mt-2">Simple POS System</h5>
+          <p class="mt-3 text-dim">A basic point-of-sale system designed for small stores to manage transactions efficiently.</p>
         </div>
       </div>
-
-      <div class="col-md-6 mb-3">
-        <div class="card-custom p-4">
-          <h5>Ticketing System</h5>
-          <small>2023</small>
-          <p class="mt-2">A system for managing tickets, tracking requests, and providing simple user support workflows.</p>
+      <div class="col-md-6">
+        <div class="card-custom">
+          <small class="text-dim">2023</small>
+          <h5 class="fw-bold mt-2">Ticketing System</h5>
+          <p class="mt-3 text-dim">A system for managing tickets, tracking requests, and providing simple user support workflows.</p>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- CERTIFICATIONS -->
 <section class="section fade-in">
   <div class="container">
-    <h2 class="section-title">Seminars/Certifications</h2>
-    <p>SAP Business One (2023)</p>
-    <p>Web Dev Peers (2023)</p>
-    <p>Cybersecurity & OS Trends (2025)</p>
+    <h2 class="section-title">Seminars & Certifications</h2>
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <p class="mb-1 fw-bold">SAP Business One</p>
+            <small class="text-dim">2023</small>
+        </div>
+        <div class="col-md-4 mb-3">
+            <p class="mb-1 fw-bold">Web Dev Peers</p>
+            <small class="text-dim">2023</small>
+        </div>
+        <div class="col-md-4 mb-3">
+            <p class="mb-1 fw-bold">Cybersecurity & OS Trends</p>
+            <small class="text-dim">2025</small>
+        </div>
+    </div>
   </div>
 </section>
 
-<!-- CONTACT -->
 <section class="section fade-in">
   <div class="container">
     <h2 class="section-title">Contact</h2>
+    <div class="row">
+        <div class="col-lg-6">
+            <p class="fs-5">Email: yabutriki314@gmail.com</p>
+            <p class="text-dim">Open to bilingual and entry-level IT roles</p>
 
-    <p>Email: yabutriki314@gmail.com</p>
-    <p>Open to bilingual and entry-level IT roles</p>
-
-    <div class="mt-4 d-flex gap-3">
-      <a href="https://github.com/illidanRSTR" target="_blank" class="social-btn">
-        <img src="images/1280px-Octicons-mark-github.svg.png">
-        GitHub
-      </a>
-
-      <a href="https://www.linkedin.com/in/riki-yabut-083717285/" target="_blank" class="social-btn">
-        <img src="images/LinkedIn_logo_initials.png">
-        LinkedIn
-      </a>
+            <div class="mt-5 d-flex flex-wrap gap-3">
+              <a href="https://github.com/illidanRSTR" target="_blank" class="social-btn">
+                <img src="images/1280px-Octicons-mark-github.svg.png">
+                GitHub
+              </a>
+              <a href="https://www.linkedin.com/in/riki-yabut-083717285/" target="_blank" class="social-btn">
+                <img src="images/LinkedIn_logo_initials.png">
+                LinkedIn
+              </a>
+            </div>
+        </div>
     </div>
   </div>
 </section>
 
-<footer class="text-start ps-5 p-3">
-  © 2026 Riki Yabut
+<footer class="ps-5 p-5">
+  © 2026 Riki Yabut — Aspiring System Analyst
 </footer>
 
 <script>
@@ -244,15 +290,16 @@ function typing() {
 }
 typing();
 
-const elements = document.querySelectorAll('.fade-in');
-window.addEventListener('scroll', () => {
-  elements.forEach(el => {
-    const top = el.getBoundingClientRect().top;
-    if (top < window.innerHeight - 50) {
-      el.classList.add('show');
-    }
-  });
-});
+// Modern Intersection Observer for smoother reveal
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 </script>
 
 </body>
